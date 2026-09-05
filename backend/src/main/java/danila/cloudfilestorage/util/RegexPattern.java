@@ -7,7 +7,7 @@ public class RegexPattern {
     public final String REGEX_ALL_VALID_CHARS = "[A-Za-zА-Яа-я0-9_. \\-\\(\\)]";
     public final String REGEX_ALL_VALID_CHARS_EXCEPT_SPACE_AND_DOT = "[A-Za-zА-Яа-я0-9_\\-\\(\\)]";
     public final String REGEX_SEARCH = "("+REGEX_ALL_VALID_CHARS+"*)";
-    public final String REGEX_DIRECTORY= "("+REGEX_ALL_VALID_CHARS_EXCEPT_SPACE_AND_DOT +"+"+REGEX_ALL_VALID_CHARS+"*/)";
+    public final String REGEX_DIRECTORY= "("+REGEX_ALL_VALID_CHARS+"*"+REGEX_ALL_VALID_CHARS_EXCEPT_SPACE_AND_DOT +"+"+REGEX_ALL_VALID_CHARS+"*/)";
     public final String REGEX_FILE="("+REGEX_ALL_VALID_CHARS+"*"+"\\."+ REGEX_ALL_VALID_CHARS_EXCEPT_SPACE_AND_DOT +"+"+REGEX_ALL_VALID_CHARS+"*)";
     public final String REGEX_ZERO_OR_MORE_DIRECTORIES = "^"+REGEX_DIRECTORY+"*$";
     public final String REGEX_ONE_OR_MORE_DIRECTORIES = "^"+REGEX_DIRECTORY+"+$";

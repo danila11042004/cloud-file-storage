@@ -57,10 +57,10 @@ Backend запускается отдельно как Spring Boot JAR.
 
 ### Локальный запуск
 * 1-Создаем рядом с docker-compose.yml файл .env и прописываем там учетные данные для всех требуемых технологий,либо
-напрямую меняем в docker-compose.yml
-POSTGRES_USER=you_postgres_user
-POSTGRES_PASSWORD=you_postgres_password
-MINIO_ROOT_USER=you_minio_user
+напрямую меняем в docker-compose.yml<br>
+POSTGRES_USER=you_postgres_user<br>
+POSTGRES_PASSWORD=you_postgres_password<br>
+MINIO_ROOT_USER=you_minio_user<br>
 MINIO_ROOT_PASSWORD=you_minio_password
 * 2-Эти же данные прописываем в application.properties либо напрямую,либо через переменные окружения
 Переменные окружения проекта в Idea находятся в Edit->Environment variables и прописываются таким образом
@@ -78,6 +78,16 @@ docker compose up --build -d что создаст и запустит все к
 * 3-Копируем JAR,docker-compose.yml,.env докера, фронтенд на удаленный сервер в одну папку
 * 4-Устанавливаем на удаленном сервере docker, docker compose,JRE
 * 5-Выполняем пункт 3 локального запуска
-* 6-Выполняем запуск JAR с переменными окружения 
-POSTGRES_USER=you_postgres_user POSTGRES_PASSWORD=you_postgres_password MINIO_ROOT_USER=you_minio_user MINIO_ROOT_PASSWORD=you_minio_password java -jar cloud-file-storage-0.0.1-SNAPSHOT.jar
-
+* 6-Выполняем запуск JAR с переменными окружения.Рекомендую создать скрипт start-backend.sh с таким содержимым для запуска ,чтобы<br>
+запустить на фоне и выйти потом из локального сервера:<br>
+#!/bin/bash<br>
+export POSTGRES_USER=you_postgres_user<br>
+export POSTGRES_PASSWORD=you_postgres_password<br>
+export MINIO_ROOT_USER=you_minio_user<br>
+export MINIO_ROOT_PASSWORD=you_minio_password<br>
+nohup java -jar название_вашего_JAR.jar > /dev/null 2>&1 &<br>
+Далее выдаем права на выполнение скрипта<br>
+chmod +x start-backend.sh<br>
+Запускаем скрипт<br>
+./start-backend.sh
+* 7-Можем заходить на http://yourIp:3000 для проверки работоспособности
