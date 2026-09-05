@@ -4,6 +4,7 @@ import danila.cloudfilestorage.util.RegexPattern;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 public record ResourceMoveRequestDto(
         @Schema(description = "Начальный путь до ресурса,который хотим переименовать/переместить",
@@ -11,11 +12,13 @@ public record ResourceMoveRequestDto(
         @NotNull(message = "Путь к начальному ресурсу не передан")
         @Pattern(regexp = RegexPattern.REGEX_PATH_TO_RESOURCE,
                 message = "Некорректный начальный путь или название ресурса")
+        @Size(max = 250, message = "Длина пути до ресурса должна быть до 250 символов")
         String from,
         @Schema(description = "Конечный путь до ресурса,который хотим переименовать/переместить",
                 example = "first/newFile.txt")
         @NotNull(message = "Путь к конечному ресурсу не передан")
         @Pattern(regexp = RegexPattern.REGEX_PATH_TO_RESOURCE,
                 message = "Некорректный конечный путь или название ресурса")
+        @Size(max = 250, message = "Длина пути до ресурса должна быть до 250 символов")
         String to) {
 }

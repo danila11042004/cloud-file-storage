@@ -2,7 +2,6 @@ package danila.cloudfilestorage.service;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
@@ -27,5 +26,7 @@ public class IntegrationTest {
     static void minioProperties(DynamicPropertyRegistry propertyRegistry) {
         propertyRegistry.add("minio.url", () -> "http://" + minio.getHost() + ":"
                 + minio.getMappedPort(9000));
+        propertyRegistry.add("minio.access-key", () -> "minioadmin");
+        propertyRegistry.add("minio.secret-key", () -> "minioadmin");
     }
 }
