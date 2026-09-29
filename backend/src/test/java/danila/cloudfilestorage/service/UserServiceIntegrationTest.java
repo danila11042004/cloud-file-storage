@@ -10,13 +10,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
-public class UserServiceIntegrationTest extends IntegrationTest {
+@SpringBootTest
+@Import(IntegrationTest.class)
+public class UserServiceIntegrationTest {
     private static final String USER_LOGIN = "test_user";
     private static final String USER_PASSWORD = "test_password";
 
