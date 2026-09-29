@@ -2,10 +2,7 @@ package danila.cloudfilestorage.dto;
 
 import danila.cloudfilestorage.util.RegexPattern;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public record AuthRequestDto(
         @Schema(description = "Имя пользователя",
@@ -17,8 +14,7 @@ public record AuthRequestDto(
         String username,
         @Schema(description = "Пароль пользователя",
                 example = "asdfg123")
-        @NotNull(message = "Пароль не передан")
-        @NotEmpty(message = "Пароль не должен быть пустым")
+        @NotBlank(message = "Пароль не должен быть пустым")
         @Size(min = 5, max = 15, message = "Длина пароля должна быть от 5 до 15 символов")
         String password
 ) {

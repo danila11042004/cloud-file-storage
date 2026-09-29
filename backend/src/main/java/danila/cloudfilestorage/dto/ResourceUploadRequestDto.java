@@ -18,7 +18,6 @@ public record ResourceUploadRequestDto(
         @Size(max = 250, message = "Длина пути до директории должна быть до 250 символов")
         String path,
         @Schema(description = "Список загружаемых файлов")
-        @NotNull(message = "Файлы не выбраны")
         @NotEmpty(message = "Файлы не выбраны")
         List<MultipartFile> object) {
 
